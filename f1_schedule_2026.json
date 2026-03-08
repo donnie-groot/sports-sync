@@ -1,0 +1,198 @@
+{
+  "series": "formula one",
+  "season": 2026,
+  "races": [
+    {
+      "name": "australia gp",
+      "round": 1,
+      "date": "2026-03-07",
+      "location": "albert park",
+      "sprint": false,
+      "lights_out_time": "23:00"
+    },
+    {
+      "name": "chinese gp",
+      "round": 2,
+      "date": "2026-03-15",
+      "location": "Shanghai",
+      "sprint": true,
+      "lights_out_time": "03:00"
+    },
+    {
+      "name": "Japanese gp",
+      "round": 3,
+      "date": "2026-03-29",
+      "location": "Suzuka",
+      "sprint": false,
+      "lights_out_time": "01:00"
+    },
+    {
+      "name": "Bahrain gp",
+      "round": 4,
+      "date": "2026-04-12",
+      "location": "Bahrain",
+      "sprint": false,
+      "lights_out_time": "11:00"
+    },
+    {
+      "name": "Saudi Arabian gp",
+      "round": 5,
+      "date": "2026-04-19",
+      "location": "Jeddah",
+      "sprint": false,
+      "lights_out_time": "13:00"
+    },
+    {
+      "name": "Miami gp",
+      "round": 6,
+      "date": "2026-05-03",
+      "location": "Miami",
+      "sprint": true,
+      "lights_out_time": "16:00"
+    },
+    {
+      "name": "Canadian gp",
+      "round": 7,
+      "date": "2026-05-24",
+      "location": "Gilles-Villeneuve",
+      "sprint": true,
+      "lights_out_time": "16:00"
+    },
+    {
+      "name": "Monaco gp",
+      "round": 8,
+      "date": "2026-06-07",
+      "location": "Circuit de Monaco",
+      "sprint": false,
+      "lights_out_time": "09:00"
+    },
+    {
+      "name": "Barcelona gp",
+      "round": 9,
+      "date": "2026-06-14",
+      "location": "Circuit de Barcelona-Catalunya",
+      "sprint": false,
+      "lights_out_time": "09:00"
+    },
+    {
+      "name": "Austrian gp",
+      "round": 10,
+      "date": "2026-06-28",
+      "location": "red bull ring",
+      "sprint": false,
+      "lights_out_time": "09:00"
+    },
+    {
+      "name": "British gp",
+      "round": 11,
+      "date": "2026-07-05",
+      "location": "Silverstone",
+      "sprint": true,
+      "lights_out_time": "10:00"
+    },
+    {
+      "name": "Belgian gp",
+      "round": 12,
+      "date": "2026-07-19",
+      "location": "Francorchamps ",
+      "sprint": false,
+      "lights_out_time": "09:00"
+    },
+    {
+      "name": "Hungarian gp",
+      "round": 13,
+      "date": "2026-07-26",
+      "location": "Hungaroring",
+      "sprint": false,
+      "lights_out_time": "09:00"
+    },
+    {
+      "name": "Dutch gp",
+      "round": 14,
+      "date": "2026-08-23",
+      "location": "Zandvoort",
+      "sprint": true,
+      "lights_out_time": "09:00"
+    },
+    {
+      "name": "Italian gp",
+      "round": 15,
+      "date": "2026-09-06",
+      "location": "Monza",
+      "sprint": false,
+      "lights_out_time": "09:00"
+    },
+    {
+      "name": "Spanish gp",
+      "round": 16,
+      "date": "2026-09-13",
+      "location": "Madrid Street Circuit",
+      "sprint": false,
+      "lights_out_time": "09:00"
+    },
+    {
+      "name": "Azerbaijan gp",
+      "round": 17,
+      "date": "2026-09-26",
+      "location": "baku city",
+      "sprint": false,
+      "lights_out_time": "07:00"
+    },
+    {
+      "name": "Singapore gp",
+      "round": 18,
+      "date": "2026-10-11",
+      "location": "Marina Bay Street Circuit",
+      "sprint": true,
+      "lights_out_time": "08:00"
+    },
+    {
+      "name": "United States gp",
+      "round": 19,
+      "date": "2026-10-25",
+      "location": "Circuit of The Americas",
+      "sprint": false,
+      "lights_out_time": "16:00"
+    },
+    {
+      "name": "Mexico City gp",
+      "round": 20,
+      "date": "2026-11-01",
+      "location": "Autódromo Hermanos Rodríguez",
+      "sprint": false,
+      "lights_out_time": "15:00"
+    },
+    {
+      "name": "São Paulo gp",
+      "round": 21,
+      "date": "2026-11-08",
+      "location": "Interlagos",
+      "sprint": false,
+      "lights_out_time": "12:00"
+    },
+    {
+      "name": "Las Vegas gp",
+      "round": 22,
+      "date": "2026-11-21",
+      "location": "Las Vegas Street Circuit",
+      "sprint": false,
+      "lights_out_time": "23:00"
+    },
+    {
+      "name": "Qatar gp",
+      "round": 23,
+      "date": "2026-11-29",
+      "location": "Lusail International Circuit",
+      "sprint": false,
+      "lights_out_time": "11:00"
+    },
+    {
+      "name": "Abu Dhabi gp",
+      "round": 24,
+      "date": "2026-12-06",
+      "location": "Yas Marina Circuit",
+      "sprint": false,
+      "lights_out_time": "08:00"
+    }
+  ]
+}
