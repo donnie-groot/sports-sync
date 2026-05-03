@@ -12,6 +12,7 @@ from apis.f1_api import get_f1_schedule
 
 ###### logic  ######
 def calendar_event(races, service):
+    #converting time zone
     utc = pytz.utc
     eastern = pytz.timezone("America/New_York")
 
