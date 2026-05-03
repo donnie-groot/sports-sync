@@ -1,11 +1,11 @@
-# first party imports
+###### 1st party imports ######
 import os
 
-# 3rd party imports 
+###### 3st party imports ###### 
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-# file imports
+###### file imports ######
 
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
