@@ -6,7 +6,8 @@ from datetime import datetime, timedelta, timezone
 ###### 3rd party imports ######
 import requests
 
-# file imports
+###### local imports ######
+
 from google_auth import base_dir, google_auth
 from calendar_events import calendar_event, nuke
 
@@ -33,3 +34,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+

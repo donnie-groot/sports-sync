@@ -1,11 +1,11 @@
-###### 1st party imports ######
+###### standard libery imports ######
 import os
 import json
 from datetime import datetime, timedelta, timezone
 
-###### 3st party imports ###### 
+###### 3rd party imports ###### 
 
-###### file imports ######
+###### local imports ######
 from google_auth import base_dir
 
 
@@ -59,3 +59,4 @@ def nuke(service):
         page_token = event_result.get("nextPageToken")
         if not page_token:
             break
+
