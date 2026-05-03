@@ -10,9 +10,8 @@ import json
 
 def get_f1_schedule():
     response = requests.get("https://api.jolpi.ca/ergast/f1/2026/races.json")
-    print(response.status_code)
-    print(response.json())
-    print(json.dumps(response.json(), indent=2))
+    races = response.json()["MRData"]["RaceTable"]["Races"]
+    return races
 
 if __name__ == "__main__":
     get_f1_schedule()

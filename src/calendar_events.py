@@ -4,27 +4,27 @@ import json
 from datetime import datetime, timedelta, timezone
 
 ###### 3rd party imports ###### 
-
+import pytz
 ###### local imports ######
-from google_auth import base_dir
 
+from apis.f1_api import get_f1_schedule
 
-
-# load F1 schedule from local JSON file
-with open(os.path.join(base_dir, "..", "data", "f1_schedule_2026.json"), "r", encoding="utf-8") as file:
-    data = json.load(file)
 
 ###### logic  ######
 def calendar_event(races, service):
-    # formats date time and lights out time into the right format
-    start_time_str = races["date"] + "T" + races["lights_out_time"] + ":00"
+    utc = pytz.utc
+    eastern = pytz.timezone("America/New_York")
+
+    # formats date time and time into the right format
+    start_time_str = races["date"] + "T" + races["time"].replace("Z", "")
     start_dt = datetime.strptime(start_time_str, "%Y-%m-%dT%H:%M:%S")
+    start_dt = utc.localize(start_dt).astimezone(eastern)
     end_dt = start_dt + timedelta(hours=2)
     start_time_formatted = start_dt.strftime("%Y-%m-%dT%H:%M:%S")
     end_time_formatted = end_dt.strftime("%Y-%m-%dT%H:%M:%S")
     # formats our event
     event = {
-        "summary": races["name"],
+        "summary": races["raceName"],
         "start": {"dateTime": start_time_formatted, "timeZone": "America/New_York"},
         "end": {"dateTime": end_time_formatted, "timeZone": "America/New_York"},
     }
@@ -33,7 +33,7 @@ def calendar_event(races, service):
     print(f"Added {event['summary']}:")
 
 
-# TODO add a function that prints the added events like we do in nuke
+
 
 
 # nukeing events because dev is a dumy and ran it 4 times because i thought it didnt work
@@ -48,7 +48,7 @@ def nuke(service):
         )
         events = event_result.get("items", [])
         for event in events:
-            if " gp" in event.get("summary", "").lower():
+            if " Grand Prix" in event.get("summary", ""):
                 try:
                     service.events().delete(
                         calendarId="primary", eventId=event["id"]
