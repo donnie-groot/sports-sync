@@ -7,10 +7,14 @@
 
 # v2 refactor of main-in progress 🚧
 
-- [ ] split main into multiple files
-- [ ] make google_auth a separate file
-- [ ] add some classes and oop concepts
-- [ ] add print for adding in a similar way to how we already have deleting events
+- [x] split main into multiple files
+- [x] make google_auth a separate file
+- [x] add print for adding in a similar way to how we already have deleting events
+- [x] add jolpi api for f1
+- [ ] hook up the api into the rest of the logic
+- [ ] add logic for spint races
+- [ ] add logic for spint quali
+- [ ] add logic for quali
 
 # v3 api and football🏈- planned📋
 
