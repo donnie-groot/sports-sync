@@ -26,7 +26,7 @@
 
 # v5 cs2🔫- concept of a plan🤔
 
-- [ ] add faceit api
+- [ ] add (https://developers.pandascore.co/docs/websockets-overview) api
 - [ ] finish abstraction layer
 
 # v6 wwe 🤼- planned
