@@ -18,14 +18,15 @@
 
 # v3 api and football🏈- planned📋
 
-- [ ] remove f1_schedule_2026.json from main
-- [ ] add API-Sports.io api
-- [ ] replace f1_schedule_2026.json with the f1 api from API-Sports.io
-- [ ] add cfb api from API-Sports.io and logic to put the evens on calendar
+- [x] remove f1_schedule_2026.json from main
+- [ ] look into cfb apis
+- [ ] implment said api
+- [ ] find a solution to make this thing sync because of football 
 
 # v4 basketball🏀- planned📋
 
-- [ ] add cbb from API-Sports.io
+- [ ] look into cbb apis
+- [ ] implment said api
 - [ ] lay the ground work for abstraction layer
 
 # v5 cs2🔫- concept of a plan🤔

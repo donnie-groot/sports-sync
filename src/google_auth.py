@@ -1,10 +1,11 @@
 ###### standard libery imports ######
 import os
 
-###### 3rd party imports ###### 
+###### 3rd party imports ######
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+
 ###### local imports ######
 
 
@@ -20,11 +21,14 @@ def google_auth():
     creds = None
     # checking if credintals are already saved
     if os.path.exists(os.path.join(base_dir, "..", "config", "token.json")):
-        creds = Credentials.from_authorized_user_file(os.path.join(base_dir, "..", "config", "token.json"), SCOPES)
+        creds = Credentials.from_authorized_user_file(
+            os.path.join(base_dir, "..", "config", "token.json"), SCOPES
+        )
     # if they arent getting u loged in
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
-            os.path.join(base_dir, "..", "config", "sports_api_credentials.json"), SCOPES
+            os.path.join(base_dir, "..", "config", "sports_api_credentials.json"),
+            SCOPES,
         )
         creds = flow.run_local_server(port=0)
     # opening token.json and writing the credintals to it

@@ -3,8 +3,9 @@ import os
 import json
 from datetime import datetime, timedelta, timezone
 
-###### 3rd party imports ###### 
+###### 3rd party imports ######
 import pytz
+
 ###### local imports ######
 
 from apis.f1_api import get_f1_schedule
@@ -12,7 +13,7 @@ from apis.f1_api import get_f1_schedule
 
 ###### logic  ######
 def calendar_event(races, service):
-    #converting time zone
+    # converting time zone
     utc = pytz.utc
     eastern = pytz.timezone("America/New_York")
 
@@ -25,16 +26,13 @@ def calendar_event(races, service):
     end_time_formatted = end_dt.strftime("%Y-%m-%dT%H:%M:%S")
     # formats our event
     event = {
-        "summary": races["raceName"],
+        " summary": races["raceName"],
         "start": {"dateTime": start_time_formatted, "timeZone": "America/New_York"},
         "end": {"dateTime": end_time_formatted, "timeZone": "America/New_York"},
     }
     # builds calandar event
     service.events().insert(calendarId="primary", body=event).execute()
     print(f"Added {event['summary']}:")
-
-
-
 
 
 # nukeing events because dev is a dumy and ran it 4 times because i thought it didnt work
@@ -60,4 +58,3 @@ def nuke(service):
         page_token = event_result.get("nextPageToken")
         if not page_token:
             break
-
