@@ -12,21 +12,10 @@ from apis.f1_api import get_f1_schedule
 
 
 ###### logic  ######
-def calendar_event(races, service):
-    # converting time zone
-    utc = pytz.utc
-    eastern = pytz.timezone("America/New_York")
-
-    # formats date time and time into the right format
-    start_time_str = races["date"] + "T" + races["time"].replace("Z", "")
-    start_dt = datetime.strptime(start_time_str, "%Y-%m-%dT%H:%M:%S")
-    start_dt = utc.localize(start_dt).astimezone(eastern)
-    end_dt = start_dt + timedelta(hours=2)
-    start_time_formatted = start_dt.strftime("%Y-%m-%dT%H:%M:%S")
-    end_time_formatted = end_dt.strftime("%Y-%m-%dT%H:%M:%S")
+def calendar_event(service, summary, start_time_formatted, end_time_formatted):
     # formats our event
     event = {
-        " summary": races["raceName"],
+        "summary": summary,
         "start": {"dateTime": start_time_formatted, "timeZone": "America/New_York"},
         "end": {"dateTime": end_time_formatted, "timeZone": "America/New_York"},
     }

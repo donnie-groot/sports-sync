@@ -19,8 +19,7 @@
 # v3 api and football🏈- planned📋
 
 - [x] remove f1_schedule_2026.json from main
-- [ ] look into cfb apis
-- [ ] implment said api
+- [ ] implment (https://api.collegefootballdata.com/#/games/GetGames)
 - [ ] find a solution to make this thing sync because of football 
 
 # v4 basketball🏀- planned📋
@@ -37,4 +36,5 @@
 # v6 wwe 🤼- planned
 
 - [ ] see if theres a api that covers wwe events
+- [ ] maby https://www.thesportsdb.com/league/4444-wwe but see step above because dev isnt sure
 - [ ] if one exists implement it into the rest of the logic including the abstraction layer
