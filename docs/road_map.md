@@ -5,7 +5,7 @@
 - [x] logic for calendar events to write into google calendar
 - [x] nuke function to remove calendar events
 
-# v2 refactor of main-in progress 🚧
+# v2 refactor of main and f1 api -complete ✅
 
 - [x] split main into multiple files
 - [x] make google_auth a separate file
@@ -18,6 +18,9 @@
 # v3 api and football🏈- planned📋
 - [ ] implment (https://api.collegefootballdata.com/#/games/GetGames)
 - [ ] find a solution to make this thing sync because of football 
+- [ ] add token refresh to apis 
+- [ ] add error handleing to apis
+- [ ] Add requirements.txt
 
 # v4 basketball🏀- planned📋
 

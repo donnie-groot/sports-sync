@@ -2,7 +2,6 @@
 import requests
 from datetime import datetime, timedelta, timezone
 
-
 ##### 3rd party imports ######
 import pytz
 
@@ -14,8 +13,6 @@ def get_f1_schedule():
     response = requests.get("https://api.jolpi.ca/ergast/f1/2026/races.json")
     races = response.json()["MRData"]["RaceTable"]["Races"]
     return races
-
-
 
 
 def format_f1_session(session, summary, duration_hours):
