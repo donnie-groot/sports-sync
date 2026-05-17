@@ -5,31 +5,36 @@
 - [x] logic for calendar events to write into google calendar
 - [x] nuke function to remove calendar events
 
-# v2 refactor of main-in progress 🚧
+# v2 refactor of main and f1 api -complete ✅
 
-- [ ] split main into multiple files
-- [ ] make google_auth a separate file
-- [ ] add some classes and oop concepts
-- [ ] add print for adding in a similar way to how we already have deleting events
+- [x] split main into multiple files
+- [x] make google_auth a separate file
+- [x] add print for adding in a similar way to how we already have deleting events
+- [x] add jolpi api for f1
+- [x] hook up the api into the rest of the logic
+- [x] add logic for spint races
+- [x] add logic for quali
 
 # v3 api and football🏈- planned📋
-
-- [ ] remove f1_schedule_2026.json from main
-- [ ] add API-Sports.io api
-- [ ] replace f1_schedule_2026.json with the f1 api from API-Sports.io
-- [ ] add cfb api from API-Sports.io and logic to put the evens on calendar
+- [ ] implment (https://api.collegefootballdata.com/#/games/GetGames)
+- [ ] find a solution to make this thing sync because of football 
+- [ ] add token refresh to apis 
+- [ ] add error handleing to apis
+- [ ] Add requirements.txt
 
 # v4 basketball🏀- planned📋
 
-- [ ] add cbb from API-Sports.io
+- [ ] look into cbb apis
+- [ ] implment said api
 - [ ] lay the ground work for abstraction layer
 
 # v5 cs2🔫- concept of a plan🤔
 
-- [ ] add faceit api
+- [ ] add (https://developers.pandascore.co/docs/websockets-overview) api
 - [ ] finish abstraction layer
 
 # v6 wwe 🤼- planned
 
 - [ ] see if theres a api that covers wwe events
+- [ ] maby https://www.thesportsdb.com/league/4444-wwe but see step above because dev isnt sure
 - [ ] if one exists implement it into the rest of the logic including the abstraction layer
