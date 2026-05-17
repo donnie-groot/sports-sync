@@ -1,9 +1,10 @@
 ###### standard library imports ######
 import requests
-import json
+from datetime import datetime, timedelta, timezone
 
-###### 3rd party imports ######
-# import from thing i downloaded
+
+##### 3rd party imports ######
+import pytz
 
 ###### local imports ######
 # from module import something
@@ -15,19 +16,18 @@ def get_f1_schedule():
     return races
 
 
-if __name__ == "__main__":
-    get_f1_schedule()
 
 
-def function_name(params):
-     # converting time zone
+def format_f1_session(session, summary, duration_hours):
+    # converting time zone
     utc = pytz.utc
     eastern = pytz.timezone("America/New_York")
 
     # formats date time and time into the right format
-    start_time_str = races["date"] + "T" + races["time"].replace("Z", "")
+    start_time_str = session["date"] + "T" + session["time"].replace("Z", "")
     start_dt = datetime.strptime(start_time_str, "%Y-%m-%dT%H:%M:%S")
     start_dt = utc.localize(start_dt).astimezone(eastern)
-    end_dt = start_dt + timedelta(hours=2)
+    end_dt = start_dt + timedelta(hours=duration_hours)
     start_time_formatted = start_dt.strftime("%Y-%m-%dT%H:%M:%S")
     end_time_formatted = end_dt.strftime("%Y-%m-%dT%H:%M:%S")
+    return start_time_formatted, end_time_formatted
