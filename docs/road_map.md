@@ -12,13 +12,10 @@
 - [x] add print for adding in a similar way to how we already have deleting events
 - [x] add jolpi api for f1
 - [x] hook up the api into the rest of the logic
-- [ ] add logic for spint races
-- [ ] add logic for spint quali
-- [ ] add logic for quali
+- [x] add logic for spint races
+- [x] add logic for quali
 
 # v3 api and football🏈- planned📋
-
-- [x] remove f1_schedule_2026.json from main
 - [ ] implment (https://api.collegefootballdata.com/#/games/GetGames)
 - [ ] find a solution to make this thing sync because of football 
 

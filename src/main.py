@@ -1,14 +1,11 @@
 ###### standard libery imports ######
-import os
-import json
-from datetime import datetime, timedelta, timezone
 
 ###### 3rd party imports ######
 import requests
 
 ###### local imports ######
 
-from google_auth import base_dir, google_auth
+from google_auth import google_auth
 from calendar_events import calendar_event, nuke
 from apis.f1_api import get_f1_schedule, format_f1_session
 

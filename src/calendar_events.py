@@ -1,10 +1,7 @@
 ###### standard libery imports ######
-import os
-import json
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 ###### 3rd party imports ######
-import pytz
 
 ###### local imports ######
 
