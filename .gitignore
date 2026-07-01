@@ -4,3 +4,4 @@ data/
 /internal docs
 venv/
 .env
+.envrc
