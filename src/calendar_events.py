@@ -5,9 +5,6 @@ from datetime import datetime, timezone
 
 ###### local imports ######
 
-from apis.f1_api import get_f1_schedule
-from apis.cfb_api import get_cfb_schedule
-
 
 ###### logic  ######
 def calendar_event(service, summary, start_time_formatted, end_time_formatted):
@@ -18,8 +15,12 @@ def calendar_event(service, summary, start_time_formatted, end_time_formatted):
         "end": {"dateTime": end_time_formatted, "timeZone": "America/New_York"},
     }
     # builds calandar event
-    service.events().insert(calendarId="primary", body=event).execute()
-    print(f"Added {event['summary']}:")
+    try:
+        service.events().insert(calendarId="primary", body=event).execute()
+        print(f"Added {event['summary']}:")
+    except Exception as e:
+        print(f"FAILED to add {event['summary}']: {e}}")
+
 
 
 # nukeing events because dev is a dumy and ran it 4 times because i thought it didnt work
