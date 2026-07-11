@@ -1,7 +1,7 @@
 ###### standard libery imports ######
 
 ###### 3rd party imports ######
-import requests
+
 
 ###### local imports ######
 

@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 ###### local imports ######
 
 from apis.f1_api import get_f1_schedule
+from apis.cfb_api import get_cfb_schedule
 
 
 ###### logic  ######
