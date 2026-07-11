@@ -5,6 +5,7 @@ import os
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from google.auth.transport.requests import Request
 
 ###### local imports ######
 
@@ -24,6 +25,7 @@ def google_auth():
         creds = Credentials.from_authorized_user_file(
             os.path.join(base_dir, "..", "config", "token.json"), SCOPES
         )
+
     # if they arent getting u loged in
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
@@ -31,8 +33,14 @@ def google_auth():
             SCOPES,
         )
         creds = flow.run_local_server(port=0)
+
+    #token refresh 
+    if creds and creds.expired and creds.refresh_token:
+        creds.refresh(Request())
+
     # opening token.json and writing the credintals to it
     with open(os.path.join(base_dir, "..", "config", "token.json"), "w") as file:
         file.write(creds.to_json())
+
     # returning and building a connection to google calendar v3 api
     return build("calendar", "v3", credentials=creds)
