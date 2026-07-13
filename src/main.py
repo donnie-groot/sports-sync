@@ -12,8 +12,6 @@ from apis.cfb_api import format_cfb_game, get_cfb_schedule
 
 
 
-
-
 # making f1 events 
 def build_f1_items(races):
     items = []
@@ -42,7 +40,6 @@ def build_f1_items(races):
             items.append(item)
 
     return items
-
 
 
 # making cfb events
