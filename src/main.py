@@ -8,7 +8,7 @@
 from google_auth import google_auth
 from calendar_events import smart_sync
 from apis.f1_api import get_f1_schedule, format_f1_session
-from apis.cfb_api import format_cfb_game
+from apis.cfb_api import format_cfb_game, get_cfb_schedule
 
 
 # main loop
@@ -30,6 +30,38 @@ def main():
                 event["Sprint"], f"{event['raceName']} - Sprint", 1
             )
             #calendar_event(service, f"{event['raceName']} - Sprint", start, end)
+
+
+# making f1 events 
+def build_f1_items(races):
+    items = []
+    for event in races:
+        sessions = [
+            (event, "race", 2),
+            (event["Qualifying"], "Qualifying", 1)
+
+        ]
+        if event.get("Sprint"):
+            sessions.append((event["Sprint"], "Sprint", 1))
+        
+        for session_data, label, duration in sessions:
+            summary = f"{event['raceName']} - {label}"
+
+            start, end = format_f1_session(session_data, summary, duration)
+
+
+            item = {
+                "summary": summary,
+                "is_tbd": False,
+                "start": start,
+                "end": end,
+            }
+
+            items.append(item)
+
+    return items
+
+
 
 
 
