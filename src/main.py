@@ -11,25 +11,7 @@ from apis.f1_api import get_f1_schedule, format_f1_session
 from apis.cfb_api import format_cfb_game, get_cfb_schedule
 
 
-# main loop
-def main():
-    service = google_auth()
-    race_weekend = get_f1_schedule()
-    #nuke(service)
-    for event in race_weekend:
-        start, end = format_f1_session(event, f"{event['raceName']} - Race", 2)
-        #calendar_event(service, f"{event['raceName']} - Race", start, end)
 
-        start, end = format_f1_session(
-            event["Qualifying"], f"{event['raceName']} - Qualifying", 1
-        )
-        #calendar_event(service, f"{event['raceName']} - Qualifying", start, end)
-
-        if event.get("Sprint"):
-            start, end = format_f1_session(
-                event["Sprint"], f"{event['raceName']} - Sprint", 1
-            )
-            #calendar_event(service, f"{event['raceName']} - Sprint", start, end)
 
 
 # making f1 events 
@@ -47,7 +29,7 @@ def build_f1_items(races):
         for session_data, label, duration in sessions:
             summary = f"{event['raceName']} - {label}"
 
-            start, end = format_f1_session(session_data, summary, duration)
+            start, end = format_f1_session(session_data, duration)
 
 
             item = {
@@ -60,8 +42,6 @@ def build_f1_items(races):
             items.append(item)
 
     return items
-
-
 
 
 
@@ -79,7 +59,7 @@ def build_cfb_items(games):
         is_tbd = game["startTimeTBD"]
 
         if not is_tbd:
-            start, end = format_cfb_game(game, summary)
+            start, end = format_cfb_game(game)
         else:
             start = None
             end = None
@@ -97,16 +77,20 @@ def build_cfb_items(games):
     return items
 
 
+# main loop
+def main():
+    service = google_auth()
 
+    race_weekend = get_f1_schedule()
+    f1_items = build_f1_items(race_weekend)
+    cfb_games = get_cfb_schedule()
+    cfb_items = build_cfb_items(cfb_games)
 
+    items = cfb_items + f1_items
 
-
-
-
-
+    smart_sync(service, items)
 
 
 # calling main
-
 if __name__ == "__main__":
     main()

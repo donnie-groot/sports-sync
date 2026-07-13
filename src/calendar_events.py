@@ -34,7 +34,7 @@ def get_existing_events(service):
 # finds the matching events 
 def find_match(all_events, game_summary):
     for event in all_events:
-        if game_summary == event["summary"]:
+        if game_summary == event.get("summary", ""):
             return event
     
     return None

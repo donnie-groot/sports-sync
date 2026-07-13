@@ -36,7 +36,7 @@ def get_cfb_schedule():
 
 
 
-def format_cfb_game(game,  duration_hours=3.5):
+def format_cfb_game(game, duration_hours=3.5):
     # converting time zone
     utc = pytz.utc
     eastern = pytz.timezone("America/New_York")
