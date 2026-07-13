@@ -15,12 +15,12 @@
 - [x] add logic for spint races
 - [x] add logic for quali
 
-# v3 api and football🏈- work in progress🚧
+# v3 api and football🏈- work in progress ✅
 - [x] implment (https://api.collegefootballdata.com/#/games/GetGames)
-- [ ] find a solution to make this thing sync because of football 
-- [ ] add token refresh to apis 
-- [ ] add error handleing to apis
-- [ ] add smart sync
+- [x] find a solution to make this thing sync because of football 
+- [x] add token refresh to apis 
+- [x] add error handleing to apis
+- [x] add smart sync
 - [x] Add requirements.txt
 
 # v4 basketball🏀- planned📋
