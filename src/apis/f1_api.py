@@ -15,7 +15,7 @@ def get_f1_schedule():
     return races
 
 
-def format_f1_session(session, summary, duration_hours):
+def format_f1_session(session, duration_hours):
     # converting time zone
     utc = pytz.utc
     eastern = pytz.timezone("America/New_York")

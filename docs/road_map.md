@@ -15,17 +15,17 @@
 - [x] add logic for spint races
 - [x] add logic for quali
 
-# v3 api and football🏈- planned📋
-- [ ] implment (https://api.collegefootballdata.com/#/games/GetGames)
+# v3 api and football🏈- work in progress🚧
+- [x] implment (https://api.collegefootballdata.com/#/games/GetGames)
 - [ ] find a solution to make this thing sync because of football 
 - [ ] add token refresh to apis 
 - [ ] add error handleing to apis
-- [ ] Add requirements.txt
+- [ ] add smart sync
+- [x] Add requirements.txt
 
 # v4 basketball🏀- planned📋
 
-- [ ] look into cbb apis
-- [ ] implment said api
+- [ ] implement https://api.collegebasketballdata.com/ 
 - [ ] lay the ground work for abstraction layer
 
 # v5 cs2🔫- concept of a plan🤔
