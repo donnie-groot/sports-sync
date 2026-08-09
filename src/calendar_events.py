@@ -1,5 +1,5 @@
 ###### standard libery imports ######
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 
 ###### 3rd party imports ######
 
@@ -7,7 +7,6 @@ from datetime import datetime, timezone, timedelta
 
 
 ###### logic  ######
-
 
 
 # grabing all the events
@@ -20,7 +19,7 @@ def get_existing_events(service):
         event_result = (
             service.events().list(calendarId="primary", pageToken=page_token).execute()
         )
-        
+
         events = event_result.get("items", [])
 
         all_events.extend(events)
@@ -31,12 +30,13 @@ def get_existing_events(service):
 
     return all_events
 
-# finds the matching events 
+
+# finds the matching events
 def find_match(all_events, game_summary):
     for event in all_events:
         if game_summary == event.get("summary", ""):
             return event
-    
+
     return None
 
 
@@ -55,14 +55,15 @@ def create_timed_event(service, summary, start_time_formatted, end_time_formatte
         print(f"Added {event['summary']}:")
 
     except Exception as e:
-        print(f"FAILED to add {event['summary}']: {e}}")
+        print(f"FAILED to add {event['summary']}: {e}")
+
 
 
 # makes events for our tbds
 def create_all_day_event(service, summary, game):
     start_date_str = game["startDate"].replace("Z", "")
 
-    start_dt = datetime.strptime(start_date_str, "%Y-%m-%dT%H:%M:%S.%f")
+    start_dt = datetime.strptime(start_date_str, "%Y-%m-%dT%H:%M:%S.%f").replace(tzinfo=timezone.utc)
 
     just_the_date = start_dt.date()
 
@@ -75,7 +76,7 @@ def create_all_day_event(service, summary, game):
     event = {
         "summary": summary,
         "start": {"date": formatted_date},
-        "end": {"date": formatted_end_date}
+        "end": {"date": formatted_end_date},
     }
 
     try:
@@ -103,10 +104,10 @@ def smart_sync(service, items_to_sync):
         if matching_event is None:
             if not item["is_tbd"]:
                 create_timed_event(service, item["summary"], item["start"], item["end"])
-            
+
             else:
                 create_all_day_event(service, item["summary"], item["game"])
-        
+
         else:
             if "date" in matching_event["start"] and not item["is_tbd"]:
                 delete_event(service, matching_event["id"])

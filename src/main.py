@@ -5,30 +5,24 @@
 
 ###### local imports ######
 
-from google_auth import google_auth
-from calendar_events import smart_sync
-from apis.f1_api import get_f1_schedule, format_f1_session
 from apis.cfb_api import format_cfb_game, get_cfb_schedule
+from apis.f1_api import format_f1_session, get_f1_schedule
+from calendar_events import smart_sync
+from google_auth import google_auth
 
 
-
-# making f1 events 
+# making f1 events
 def build_f1_items(races):
     items = []
     for event in races:
-        sessions = [
-            (event, "race", 2),
-            (event["Qualifying"], "Qualifying", 1)
-
-        ]
+        sessions = [(event, "race", 2), (event["Qualifying"], "Qualifying", 1)]
         if event.get("Sprint"):
             sessions.append((event["Sprint"], "Sprint", 1))
-        
+
         for session_data, label, duration in sessions:
             summary = f"{event['raceName']} - {label}"
 
             start, end = format_f1_session(session_data, duration)
-
 
             item = {
                 "summary": summary,
@@ -52,7 +46,7 @@ def build_cfb_items(games):
 
         else:
             summary = f"Kentucky at {game['homeTeam']}"
-        
+
         is_tbd = game["startTimeTBD"]
 
         if not is_tbd:
@@ -70,7 +64,7 @@ def build_cfb_items(games):
         }
 
         items.append(item)
-        
+
     return items
 
 

@@ -1,9 +1,9 @@
 ###### standard library imports ######
-import requests
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 ##### 3rd party imports ######
 import pytz
+import requests
 
 ###### local imports ######
 # from module import something

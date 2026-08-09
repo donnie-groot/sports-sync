@@ -1,39 +1,34 @@
 ###### standard library imports ######
-import os 
-import json
+import os
 from datetime import datetime, timedelta
+
+import pytz
+import requests
+
 ###### 3rd party imports ######
 from dotenv import load_dotenv
-import requests
-import pytz
+
 ###### local imports ######
 # from module import something
 
 load_dotenv()
 
+
 def get_cfb_schedule():
     cfb_api_key = os.getenv("cfb_api_key")
 
-    headers = {
-        "Authorization": f"Bearer {cfb_api_key}",
-        "accept": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {cfb_api_key}", "accept": "application/json"}
 
     response = requests.get(
         "https://apinext.collegefootballdata.com/games",
         headers=headers,
-        params={
-            "year": 2026,
-            "team": "Kentucky",
-            "seasonType": "regular"
-        }
+        params={"year": 2026, "team": "Kentucky", "seasonType": "regular"},
     )
 
     response.raise_for_status()
     football_games = response.json()
 
     return football_games
-
 
 
 def format_cfb_game(game, duration_hours=3.5):
@@ -49,6 +44,3 @@ def format_cfb_game(game, duration_hours=3.5):
     start_time_formatted = start_dt.strftime("%Y-%m-%dT%H:%M:%S")
     end_time_formatted = end_dt.strftime("%Y-%m-%dT%H:%M:%S")
     return start_time_formatted, end_time_formatted
-
-
-

@@ -1,11 +1,12 @@
 ###### standard libery imports ######
 import os
 
+from google.auth.transport.requests import Request
+
 ###### 3rd party imports ######
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-from google.auth.transport.requests import Request
 
 ###### local imports ######
 
@@ -34,7 +35,7 @@ def google_auth():
         )
         creds = flow.run_local_server(port=0)
 
-    #token refresh 
+    # token refresh
     if creds and creds.expired and creds.refresh_token:
         creds.refresh(Request())
 
