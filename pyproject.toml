@@ -30,3 +30,7 @@ dependencies = [
     "uritemplate==4.2.0",
     "urllib3==2.7.0",
 ]
+[tool.pyright]
+typeCheckingMode = "basic"
+reportMissingTypeStubs = false
+reportUnusedCallResult = false
