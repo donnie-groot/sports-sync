@@ -135,5 +135,3 @@ def smart_sync(service, items_to_sync):
                 existing_time = matching_event["start"]["dateTime"][:19]
                 if existing_time != item["start"]:
                     update_event(service, matching_event["id"], item["summary"], item["start"], item["end"])
-                    
-                

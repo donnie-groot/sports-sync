@@ -27,7 +27,7 @@ def google_auth():
             os.path.join(base_dir, "..", "config", "token.json"), SCOPES
         )
 
-    # if they arent getting u loged in
+    # if they arent getting u logged in
     else:
         flow = InstalledAppFlow.from_client_secrets_file(
             os.path.join(base_dir, "..", "config", "sports_api_credentials.json"),
@@ -37,7 +37,11 @@ def google_auth():
 
     # token refresh
     if creds and creds.expired and creds.refresh_token:
-        creds.refresh(Request())
+        try:
+            creds.refresh(Request())
+        except Exception as e:
+            print(f"FAILED to refresh token: {e}")
+            raise
 
     # opening token.json and writing the credintals to it
     with open(os.path.join(base_dir, "..", "config", "token.json"), "w") as file:
