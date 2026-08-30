@@ -83,7 +83,7 @@ def create_all_day_event(service, summary, game):
         service.events().insert(calendarId="primary", body=event).execute()
         print(f"Added {event['summary']}:")
     except Exception as e:
-        print(f"FAILED to add {event['summary}']: {e}}")
+        print(f"FAILED to add {event['summary']}: {e}")
 
 
 # deletes events
