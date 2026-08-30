@@ -18,14 +18,19 @@ def get_cfb_schedule():
     cfb_api_key = os.getenv("cfb_api_key")
 
     headers = {"Authorization": f"Bearer {cfb_api_key}", "accept": "application/json"}
+    try:
+        response = requests.get(
+            "https://apinext.collegefootballdata.com/games",
+            headers=headers,
+            params={"year": 2026, "team": "Kentucky", "seasonType": "regular"},
+        )
+    
+        response.raise_for_status()
 
-    response = requests.get(
-        "https://apinext.collegefootballdata.com/games",
-        headers=headers,
-        params={"year": 2026, "team": "Kentucky", "seasonType": "regular"},
-    )
-
-    response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        print(f"FAILED to fetch cfb schedule: {e}")
+        raise
+        
     football_games = response.json()
 
     return football_games
