@@ -23,18 +23,31 @@
 - [x] add smart sync
 - [x] Add requirements.txt
 
-# v4 basketball🏀- planned📋
-
-- [ ] implement https://api.collegebasketballdata.com/ 
-- [ ] lay the ground work for abstraction layer
-
-# v5 cs2🔫- concept of a plan🤔
-
-- [ ] add (https://developers.pandascore.co/docs/websockets-overview) api
-- [ ] finish abstraction layer
-
-# v6 wwe 🤼- planned
+# v4 wwe 🤼- planned
 
 - [ ] see if theres a api that covers wwe events
 - [ ] maby https://www.thesportsdb.com/league/4444-wwe but see step above because dev isnt sure
-- [ ] if one exists implement it into the rest of the logic including the abstraction layer
+- [ ] add switch from prints to logging 
+- [ ] add a config to help with maintainability as well as lay ground work for front end
+
+# v4.5 refactor - planned
+- [ ] Matching by summary string only — no game ID, fragile dedup
+- [ ] Fragile .%f datetime parsing in cfb_api.py — no fallback if API omits microseconds
+- [ ] Duplicated timezone conversion logic between cfb_api.py/f1_api.py — pull into shared util
+- [ ] fix typos in commets 
+- [ ] google_auth.py path fragility (hardcoded relative path assumption)
+- [ ] add type hints 
+- [ ] add doc strings
+- [ ] add unit tests with probly pytest
+
+
+# v5 basketball🏀- planned📋
+
+- [ ] implement https://api.collegebasketballdata.com/ 
+
+
+# v6 cs2🔫- concept of a plan🤔
+
+- [ ] add (https://developers.pandascore.co/docs/websockets-overview) api
+
+# v7 front end 
