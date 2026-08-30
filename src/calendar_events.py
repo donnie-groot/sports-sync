@@ -95,6 +95,24 @@ def delete_event(service, event_id):
         print(f"FAILED to delete event {event_id}: {e}")
 
 
+#update events
+def update_event(service, event_id, summary, start_time_formatted, end_time_formatted):
+    event = {
+        "summary": summary,
+        "start": {"dateTime": start_time_formatted, "timeZone": "America/New_York"},
+        "end": {"dateTime": end_time_formatted, "timeZone": "America/New_York"},
+    }
+    try:
+        service.events().update(
+            calendarId="primary",
+            eventId=event_id,
+            body=event,
+        ).execute()
+        print(f"Updated {summary}")
+    except Exception as e:
+        print(f"FAILED to update {summary}: {e}")
+
+
 def smart_sync(service, items_to_sync):
     all_events = get_existing_events(service)
 
@@ -112,3 +130,10 @@ def smart_sync(service, items_to_sync):
             if "date" in matching_event["start"] and not item["is_tbd"]:
                 delete_event(service, matching_event["id"])
                 create_timed_event(service, item["summary"], item["start"], item["end"])
+
+            elif "dateTime" in matching_event["start"] and not item["is_tbd"]:
+                existing_time = matching_event["start"]["dateTime"][:19]
+                if existing_time != item["start"]:
+                    update_event(service, matching_event["id"], item["summary"], item["start"], item["end"])
+                    
+                
