@@ -18,4 +18,4 @@ jobs:
           echo '${{ secrets.GOOGLE_TOKEN }}' > config/token.json
       - name: write env file
         run: echo "CFB_API_KEY=${{ secrets.CFB_API_KEY }}" > .env
-      - run: python main.py
+      - run: python src/main.py
