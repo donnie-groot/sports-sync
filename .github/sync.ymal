@@ -12,6 +12,10 @@ jobs:
         with:
           python-version: '3.14.4'
       - run: pip install -r requirements.txt
+      - name: write token file
+        run: |
+          mkdir -p config
+          echo '${{ secrets.GOOGLE_TOKEN }}' > config/token.json
+      - name: write env file
+        run: echo "CFB_API_KEY=${{ secrets.CFB_API_KEY }}" > .env
       - run: python main.py
-        env:
-          GOOGLE_TOKEN: ${{ secrets.GOOGLE_TOKEN }}
