@@ -1,21 +1,21 @@
 name: sync sports
 on:
-  schedule:
-    - cron: '0 8 * * *'
-  workflow_dispatch:
+    schedule:
+        - cron: "0 8 * * *"
+    workflow_dispatch:
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.14.4'
-      - run: pip install -r requirements.txt
-      - name: write token file
-        run: |
-          mkdir -p config
-          echo '${{ secrets.GOOGLE_TOKEN }}' > config/token.json
-      - name: write env file
-        run: echo "CFB_API_KEY=${{ secrets.CFB_API_KEY }}" > .env
-      - run: python src/main.py
+    run:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: "3.14.4"
+            - run: pip install -r requirements.txt
+            - name: write token file
+              run: |
+                  mkdir -p config
+                  echo '${{ secrets.GOOGLE_TOKEN }}' > config/token.json
+            - name: write env file
+              run: echo "cfb_api_key=${{ secrets.CFB_API_KEY }}" > .env
+            - run: python src/main.py
