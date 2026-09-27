@@ -23,8 +23,15 @@
 - [x] add smart sync
 - [x] Add requirements.txt
 
-# v4 wwe 🤼- planned
+# v4 basketball🏀- planned📋
+- [ ] implement https://api.collegebasketballdata.com/
+- [ ] make a config.toml for team per sport calandars timezone
+- [ ] swap print statements for logging
+- [ ] swap summery for ids
+- [ ] add per sport error handling so if one api has an issue it dosent kill the run
 
+
+# v5 wwe 🤼- planned
 - [ ] see if theres a api that covers wwe events
 - [ ] maby https://www.thesportsdb.com/league/4444-wwe but see step above because dev isnt sure
 - [ ] add switch from prints to logging 
@@ -40,14 +47,7 @@
 - [ ] add doc strings
 - [ ] add unit tests with probly pytest
 
-
-# v5 basketball🏀- planned📋
-
-- [ ] implement https://api.collegebasketballdata.com/ 
-
-
 # v6 cs2🔫- concept of a plan🤔
-
 - [ ] add (https://developers.pandascore.co/docs/websockets-overview) api
 
 # v7 front end 
