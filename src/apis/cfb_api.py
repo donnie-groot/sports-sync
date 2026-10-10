@@ -1,6 +1,6 @@
 ###### standard library imports ######
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 import pytz
 import requests
@@ -16,13 +16,14 @@ load_dotenv()
 
 def get_cfb_schedule():
     cfb_api_key = os.getenv("cfb_api_key")
-
+    today = date.today()
+    season = today.year - 1 if today.month < 3 else today.year
     headers = {"Authorization": f"Bearer {cfb_api_key}", "accept": "application/json"}
     try:
         response = requests.get(
             "https://apinext.collegefootballdata.com/games",
             headers=headers,
-            params={"year": 2026, "team": "Kentucky", "seasonType": "regular"},
+            params={"season":season, "team": "Kentucky", "seasonType": "regular"},
         )
     
         response.raise_for_status()
