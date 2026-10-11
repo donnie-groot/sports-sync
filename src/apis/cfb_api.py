@@ -9,7 +9,7 @@ import requests
 from dotenv import load_dotenv
 
 ###### local imports ######
-# from module import something
+from models import Game
 
 load_dotenv()
 
@@ -23,9 +23,9 @@ def get_cfb_schedule():
         response = requests.get(
             "https://apinext.collegefootballdata.com/games",
             headers=headers,
-            params={"season":season, "team": "Kentucky", "seasonType": "regular"},
+            params={"year":season, "team": "Kentucky", "seasonType": "regular"},
         )
-    
+
         response.raise_for_status()
 
     except requests.exceptions.RequestException as e:
@@ -34,7 +34,20 @@ def get_cfb_schedule():
         
     football_games = response.json()
 
-    return football_games
+    games = []
+    for raw in football_games:
+        game = Game(sport="cfb",
+            game_id=raw["id"],
+            start=datetime.fromisoformat(raw["startDate"]),
+            is_tbd=raw["startTimeTBD"], 
+            home=raw["homeTeam"], 
+            away=raw["awayTeam"]
+        )
+        games.append(game)
+
+
+    
+    return games
 
 
 def format_cfb_game(game, duration_hours=3.5):
@@ -50,3 +63,8 @@ def format_cfb_game(game, duration_hours=3.5):
     start_time_formatted = start_dt.strftime("%Y-%m-%dT%H:%M:%S")
     end_time_formatted = end_dt.strftime("%Y-%m-%dT%H:%M:%S")
     return start_time_formatted, end_time_formatted
+
+
+
+if __name__ == "__main__":
+    print(get_cfb_schedule())
