@@ -1,10 +1,11 @@
 ###### standard libery imports ######
-from datetime import datetime, timedelta, timezone
+from datetime import timedelta
+
 
 ###### 3rd party imports ######
-
+import pytz
 ###### local imports ######
-
+from apis.models import Game
 
 ###### logic  ######
 
@@ -60,10 +61,10 @@ def create_timed_event(service, summary, start_time_formatted, end_time_formatte
 
 
 # makes events for our tbds
-def create_all_day_event(service, summary, game):
-    start_date_str = game["startDate"].replace("Z", "")
+def create_all_day_event(service, summary, game: Game):
+    eastern = pytz.timezone("America/New_York")
 
-    start_dt = datetime.strptime(start_date_str, "%Y-%m-%dT%H:%M:%S.%f").replace(tzinfo=timezone.utc)
+    start_dt = game.start.astimezone(eastern)
 
     just_the_date = start_dt.date()
 
