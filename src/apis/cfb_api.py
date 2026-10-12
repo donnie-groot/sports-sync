@@ -9,7 +9,7 @@ import requests
 from dotenv import load_dotenv
 
 ###### local imports ######
-from models import Game
+from apis.models import Game
 
 load_dotenv()
 

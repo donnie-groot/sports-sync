@@ -9,7 +9,7 @@ from apis.cfb_api import format_cfb_game, get_cfb_schedule
 from apis.f1_api import format_f1_session, get_f1_schedule
 from calendar_events import smart_sync
 from google_auth import google_auth
-
+from apis.models import Game
 
 # making f1 events
 def build_f1_items(races):
@@ -37,17 +37,17 @@ def build_f1_items(races):
 
 
 # making cfb events
-def build_cfb_items(games):
+def build_cfb_items(games: list[Game]):
     items = []
 
     for game in games:
-        if game["homeTeam"] == "Kentucky":
-            summary = f"Kentucky vs {game['awayTeam']}"
+        if game.home == "Kentucky":
+            summary = f"Kentucky vs {game.away}"
 
         else:
-            summary = f"Kentucky at {game['homeTeam']}"
+            summary = f"Kentucky at {game.home}"
 
-        is_tbd = game["startTimeTBD"]
+        is_tbd = game.is_tbd
 
         if not is_tbd:
             start, end = format_cfb_game(game)
