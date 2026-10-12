@@ -52,13 +52,10 @@ def get_cfb_schedule():
 
 def format_cfb_game(game, duration_hours=3.5):
     # converting time zone
-    utc = pytz.utc
     eastern = pytz.timezone("America/New_York")
 
     # formats date time and time into the right format
-    start_time_str = game["startDate"].replace("Z", "")
-    start_dt = datetime.strptime(start_time_str, "%Y-%m-%dT%H:%M:%S.%f")
-    start_dt = utc.localize(start_dt).astimezone(eastern)
+    start_dt = game.start.astimezone(eastern)
     end_dt = start_dt + timedelta(hours=duration_hours)
     start_time_formatted = start_dt.strftime("%Y-%m-%dT%H:%M:%S")
     end_time_formatted = end_dt.strftime("%Y-%m-%dT%H:%M:%S")
@@ -67,4 +64,5 @@ def format_cfb_game(game, duration_hours=3.5):
 
 
 if __name__ == "__main__":
-    print(get_cfb_schedule())
+    games = get_cfb_schedule()
+    print(format_cfb_game(games[0]))
