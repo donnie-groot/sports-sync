@@ -42,12 +42,13 @@ def find_match(all_events, game_summary):
 
 
 # creates the events
-def create_timed_event(service, summary, start_time_formatted, end_time_formatted):
+def create_timed_event(service, summary, start_time_formatted, end_time_formatted, sync_key):
     # formats our event
     event = {
         "summary": summary,
         "start": {"dateTime": start_time_formatted, "timeZone": "America/New_York"},
         "end": {"dateTime": end_time_formatted, "timeZone": "America/New_York"},
+        "extendedProperties": {"private": {"sync_key": sync_key}},
     }
 
     # builds calandar event
@@ -61,7 +62,7 @@ def create_timed_event(service, summary, start_time_formatted, end_time_formatte
 
 
 # makes events for our tbds
-def create_all_day_event(service, summary, game: Game):
+def create_all_day_event(service, summary, game: Game, sync_key):
     eastern = pytz.timezone("America/New_York")
 
     start_dt = game.start.astimezone(eastern)
@@ -78,6 +79,7 @@ def create_all_day_event(service, summary, game: Game):
         "summary": summary,
         "start": {"date": formatted_date},
         "end": {"date": formatted_end_date},
+        "extendedProperties": {"private": {"sync_key": sync_key}},
     }
 
     try:
@@ -97,12 +99,14 @@ def delete_event(service, event_id):
 
 
 #update events
-def update_event(service, event_id, summary, start_time_formatted, end_time_formatted):
+def update_event(service, event_id, summary, start_time_formatted, end_time_formatted, sync_key):
     event = {
         "summary": summary,
         "start": {"dateTime": start_time_formatted, "timeZone": "America/New_York"},
         "end": {"dateTime": end_time_formatted, "timeZone": "America/New_York"},
+        "extendedProperties": {"private": {"sync_key": sync_key}},
     }
+    
     try:
         service.events().update(
             calendarId="primary",

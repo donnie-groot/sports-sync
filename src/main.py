@@ -29,6 +29,7 @@ def build_f1_items(races):
                 "is_tbd": False,
                 "start": start,
                 "end": end,
+                "sync_key": f"f1-{event['season']}-{event['Circuit']['circuitId']}-{label}",
             }
 
             items.append(item)
@@ -61,6 +62,7 @@ def build_cfb_items(games: list[Game]):
             "start": start,
             "end": end,
             "game": game,
+            "sync_key": f"{game.sport}-{game.game_id}"
         }
 
         items.append(item)
