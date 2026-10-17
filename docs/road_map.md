@@ -27,7 +27,7 @@
 - [ ] implement https://api.collegebasketballdata.com/
 - [ ] make a config.toml for team per sport calandars timezone
 - [ ] swap print statements for logging
-- [ ] swap summery for ids
+- [x] swap summery for ids
 - [ ] add per sport error handling so if one api has an issue it dosent kill the run
 
 
