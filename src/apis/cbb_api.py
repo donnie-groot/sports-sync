@@ -8,10 +8,7 @@ import requests
 import pytz
 
 ###### local imports ######
-from models import Game
-
-
-
+from apis.models import Game
 
 load_dotenv()
 
@@ -20,7 +17,7 @@ def get_cbb_schedule():
     cbb_api_key = os.getenv("cbb_api_key")
     today = date.today()
     season = today.year + 1 if today.month >= 8 else today.year
-    headers = headers = {"Authorization": f"Bearer {cbb_api_key}", "accept": "application/json"}
+    headers = {"Authorization": f"Bearer {cbb_api_key}", "accept": "application/json"}
     
     try:
         response = requests.get(

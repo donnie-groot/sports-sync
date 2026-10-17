@@ -2,11 +2,10 @@
 import os
 from datetime import datetime, timedelta, date
 
-import pytz
-import requests
-
 ###### 3rd party imports ######
 from dotenv import load_dotenv
+import pytz
+import requests
 
 ###### local imports ######
 from apis.models import Game
@@ -56,9 +55,13 @@ def format_cfb_game(game: Game, duration_hours=3.5):
 
     # formats date time and time into the right format
     start_dt = game.start.astimezone(eastern)
+    
     end_dt = start_dt + timedelta(hours=duration_hours)
+    
     start_time_formatted = start_dt.strftime("%Y-%m-%dT%H:%M:%S")
+    
     end_time_formatted = end_dt.strftime("%Y-%m-%dT%H:%M:%S")
+    
     return start_time_formatted, end_time_formatted
 
 
