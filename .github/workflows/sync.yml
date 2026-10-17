@@ -16,6 +16,8 @@ jobs:
               run: |
                   mkdir -p config
                   echo '${{ secrets.GOOGLE_TOKEN }}' > config/token.json
-            - name: write env file
-              run: echo "cfb_api_key=${{ secrets.CFB_API_KEY }}" > .env
+                  - name: write env file
+                    run: |
+                        echo "cfb_api_key=${{ secrets.CFB_API_KEY }}" > .env
+                        echo "cbb_api_key=${{ secrets.CBB_API_KEY }}" >> .env
             - run: python src/main.py
