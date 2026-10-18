@@ -115,8 +115,10 @@ def main():
 
     items = []
     for fetch, build in SOURCES:
-        items.extend(build(fetch()))
-    
+        try:
+            items.extend(build(fetch()))
+        except Exception as e:
+            print(f"FAILED {fetch.__name__}: {e}")
     smart_sync(service, items)
 
 
