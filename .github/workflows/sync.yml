@@ -21,7 +21,6 @@ jobs:
                   echo "cfb_api_key=${{ secrets.CFB_API_KEY }}" > .env
                   echo "cbb_api_key=${{ secrets.CFB_API_KEY }}" >> .env
             - run: python src/main.py
-            - run: exit 1
             - name: notify on failure
               if: failure()
               run: curl -d "sports-sync failed" ntfy.sh/${{ secrets.NTFY_TOPIC }}
