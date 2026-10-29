@@ -1,13 +1,14 @@
 ###### standard libery imports ######
 from datetime import timedelta
-
+import logging
 
 ###### 3rd party imports ######
 import pytz
 ###### local imports ######
 from apis.models import Game
 
-###### logic  ######
+
+logger = logging.getLogger(__name__)
 
 
 # grabing all the events
@@ -45,10 +46,10 @@ def create_timed_event(service, summary, start_time_formatted, end_time_formatte
     # builds calandar event
     try:
         service.events().insert(calendarId="primary", body=event).execute()
-        print(f"Added {event['summary']}:")
+        logger.info(f"Added {event['summary']}:")
 
-    except Exception as e:
-        print(f"FAILED to add {event['summary']}: {e}")
+    except Exception:
+        logger.exception(f"FAILED to add {event['summary']}")
 
 
 
@@ -75,18 +76,18 @@ def create_all_day_event(service, summary, game: Game, sync_key):
 
     try:
         service.events().insert(calendarId="primary", body=event).execute()
-        print(f"Added {event['summary']}:")
-    except Exception as e:
-        print(f"FAILED to add {event['summary']}: {e}")
+        logger.info(f"Added {event['summary']}:")
+    except Exception:
+        logger.exception(f"FAILED to add {event['summary']}")
 
 
 # deletes events
 def delete_event(service, event_id):
     try:
         service.events().delete(calendarId="primary", eventId=event_id).execute()
-        print(f"deleted event {event_id}")
-    except Exception as e:
-        print(f"FAILED to delete event {event_id}: {e}")
+        logger.info(f"deleted event {event_id}")
+    except Exception:
+        logger.exception(f"FAILED to delete event {event_id}")
 
 
 #update events
@@ -104,9 +105,9 @@ def update_event(service, event_id, summary, start_time_formatted, end_time_form
             eventId=event_id,
             body=event,
         ).execute()
-        print(f"Updated {summary}")
-    except Exception as e:
-        print(f"FAILED to update {summary}: {e}")
+        logger.info(f"Updated {summary}")
+    except Exception:
+        logger.exception(f"FAILED to update {summary}")
 
 
 def smart_sync(service, items_to_sync):
