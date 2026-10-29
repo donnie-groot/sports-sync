@@ -1,53 +1,79 @@
-# v1 minimum viable product -complete ✅
+# v1 minimum viable product - complete ✅
 
 - [x] google auth for google calendar
 - [x] f1 schedule as a json
 - [x] logic for calendar events to write into google calendar
 - [x] nuke function to remove calendar events
 
-# v2 refactor of main and f1 api -complete ✅
+# v2 refactor of main and f1 api - complete ✅
 
 - [x] split main into multiple files
 - [x] make google_auth a separate file
 - [x] add print for adding in a similar way to how we already have deleting events
 - [x] add jolpi api for f1
 - [x] hook up the api into the rest of the logic
-- [x] add logic for spint races
+- [x] add logic for sprint races
 - [x] add logic for quali
 
-# v3 api and football🏈- work in progress ✅
-- [x] implment (https://api.collegefootballdata.com/#/games/GetGames)
-- [x] find a solution to make this thing sync because of football 
-- [x] add token refresh to apis 
-- [x] add error handleing to apis
+# v3 api and football 🏈 - complete ✅
+
+- [x] implement (https://api.collegefootballdata.com/#/games/GetGames)
+- [x] find a solution to make this thing sync because of football
+- [x] add token refresh to apis
+- [x] add error handling to apis
 - [x] add smart sync
-- [x] Add requirements.txt
+- [x] add requirements.txt
 
-# v4 basketball🏀- planned📋
-- [ ] implement https://api.collegebasketballdata.com/
-- [ ] make a config.toml for team per sport calandars timezone
-- [ ] swap print statements for logging
-- [x] swap summery for ids
-- [ ] add per sport error handling so if one api has an issue it dosent kill the run
+# v4 basketball 🏀 - work in progress 🔨
 
+- [x] implement https://api.collegebasketballdata.com/
+- [x] swap summary for ids (sync keys)
+- [x] Game dataclass for normalized game data
+- [x] SOURCES list in main so a new sport is one line
+- [x] per sport error handling so if one api has an issue it doesn't kill the run
+- [x] f1: use `current` season instead of hardcoded 2026
+- [ ] swap print statements for logging (in progress)
+- [ ] let api errors bubble up to main instead of double reporting
+- [ ] fail the run (red in Actions) if any sport or calendar call failed
+- [ ] run summary line (synced / added / updated / failed)
+- [ ] make a config.toml for team, timezone (per sport calendars later)
 
-# v5 wwe 🤼- planned
-- [ ] see if theres a api that covers wwe events
-- [ ] maby https://www.thesportsdb.com/league/4444-wwe but see step above because dev isnt sure
-- [ ] add switch from prints to logging 
-- [ ] add a config to help with maintainability as well as lay ground work for front end
+# v4.1 public repo polish
 
-# v4.5 refactor - planned
-- [ ] Matching by summary string only — no game ID, fragile dedup
-- [ ] Fragile .%f datetime parsing in cfb_api.py — no fallback if API omits microseconds
-- [ ] Duplicated timezone conversion logic between cfb_api.py/f1_api.py — pull into shared util
-- [ ] fix typos in commets 
-- [ ] google_auth.py path fragility (hardcoded relative path assumption)
-- [ ] add type hints 
-- [ ] add doc strings
-- [ ] add unit tests with probly pytest
+- [ ] README (what it does, screenshot, how it runs, design)
+- [ ] pyproject: real description, only direct dependencies
+- [ ] switch Actions to uv, delete both requirements.txt files
+- [ ] keepalive so GitHub doesn't disable the schedule after 60 days
+- [x] delete stray src/apis/venv folder
 
-# v6 cs2🔫- concept of a plan🤔
+# v4.5 refactor
+
+- [x] matching by summary string → sync keys
+- [x] fragile .%f datetime parsing → fromisoformat
+- [ ] move summary, sync_key, duration onto Game
+- [ ] neutral site support ("vs" instead of "at")
+- [ ] sync: update TBD games whose date moved (flex games)
+- [ ] sync: push summary changes to existing events
+- [ ] sync: delete events for games removed from the schedule (only for sports that fetched successfully!)
+- [ ] batch Google Calendar writes (~1s per event right now, profiled with Tachyon)
+- [ ] only fetch our own events (source tag + privateExtendedProperty) to cut the ~4s baseline
+- [ ] per sport calendars
+- [ ] pytz → zoneinfo
+- [ ] google_auth cleanup (imports, path handling, creds.valid check)
+- [ ] fix typos in comments
+- [ ] add type hints
+- [ ] add docstrings
+- [ ] unit tests with pytest (rename `api tests` folder, pytest pythonpath)
+
+# v5 wwe 🤼 - planned
+
+- [ ] see if there's an api that covers wwe events
+- [ ] maybe https://www.thesportsdb.com/league/4444-wwe, or scrape Wikipedia PLE infoboxes
+- [ ] general Event class (or named-event class) so F1 and WWE share a shape
+
+# v6 cs2 🔫 - concept of a plan 🤔
+
+- [ ] decide scope (majors only / big tournaments / tournament spans + playoffs)
 - [ ] add (https://developers.pandascore.co/docs/websockets-overview) api
 
-# v7 front end 
+# v7 front end
