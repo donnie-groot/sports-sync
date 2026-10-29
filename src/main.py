@@ -1,7 +1,7 @@
 ###### standard libery imports ######
+import logging
 
 ###### 3rd party imports ######
-
 
 ###### local imports ######
 from calendar_events import smart_sync
@@ -11,6 +11,8 @@ from apis.f1_api import format_f1_session, get_f1_schedule
 from apis.models import Game
 from apis.cbb_api import format_cbb_game, get_cbb_schedule
 
+
+logger = logging.getLogger(__name__)
 
 # making f1 events
 def build_f1_items(races):
@@ -117,11 +119,19 @@ def main():
     for fetch, build in SOURCES:
         try:
             items.extend(build(fetch()))
-        except Exception as e:
-            print(f"FAILED {fetch.__name__}: {e}")
+        except Exception:
+            logger.exception(f"FAILED {fetch.__name__}")
     smart_sync(service, items)
 
 
 # calling main
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+        handlers=[
+            logging.FileHandler("sync.log"),
+            logging.StreamHandler(),
+        ],
+    )
     main()
