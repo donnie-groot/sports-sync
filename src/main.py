@@ -113,14 +113,19 @@ SOURCES = [
 
 # main loop
 def main():
-    service = google_auth()
-
+    try:
+        service = google_auth()
+    except Exception:
+        logger.exception("FAILED GOOGLE AUTH")
+        raise
+        
     items = []
     for fetch, build in SOURCES:
         try:
             items.extend(build(fetch()))
         except Exception:
             logger.exception(f"FAILED {fetch.__name__}")
+
     smart_sync(service, items)
 
 

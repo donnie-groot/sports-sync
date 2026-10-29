@@ -37,11 +37,8 @@ def google_auth():
 
     # token refresh
     if creds and creds.expired and creds.refresh_token:
-        try:
-            creds.refresh(Request())
-        except Exception as e:
-            print(f"FAILED to refresh token: {e}")
-            raise
+        creds.refresh(Request())
+
 
     # opening token.json and writing the credintals to it
     with open(os.path.join(base_dir, "..", "config", "token.json"), "w") as file:
