@@ -18,18 +18,14 @@ def get_cfb_schedule():
     today = date.today()
     season = today.year - 1 if today.month < 3 else today.year
     headers = {"Authorization": f"Bearer {cfb_api_key}", "accept": "application/json"}
-    try:
-        response = requests.get(
-            "https://apinext.collegefootballdata.com/games",
-            headers=headers,
-            params={"year":season, "team": "Kentucky", "seasonType": "regular"},
-        )
 
-        response.raise_for_status()
+    response = requests.get(
+        "https://apinext.collegefootballdata.com/games",
+        headers=headers,
+        params={"year":season, "team": "Kentucky", "seasonType": "regular"},
+    )
 
-    except requests.exceptions.RequestException as e:
-        print(f"FAILED to fetch cfb schedule: {e}")
-        raise
+    response.raise_for_status()
         
     football_games = response.json()
 
@@ -44,8 +40,6 @@ def get_cfb_schedule():
         )
         games.append(game)
 
-
-    
     return games
 
 

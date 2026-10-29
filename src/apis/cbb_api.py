@@ -19,19 +19,14 @@ def get_cbb_schedule():
     season = today.year + 1 if today.month >= 8 else today.year
     headers = {"Authorization": f"Bearer {cbb_api_key}", "accept": "application/json"}
     
-    try:
-        response = requests.get(
-            "https://api.collegebasketballdata.com/games",
-            headers=headers,
-            params={"season":season, "team": "Kentucky",}
-        )
+    response = requests.get(
+        "https://api.collegebasketballdata.com/games",
+        headers=headers,
+        params={"season":season, "team": "Kentucky",}
+    )
 
-        response.raise_for_status()
+    response.raise_for_status()
 
-    except requests.exceptions.RequestException as e:
-        print(f"FAILED to fetch cbb schedule: {e}")
-        raise
-        
     basketball_games = response.json()
 
     games = []
@@ -45,8 +40,6 @@ def get_cbb_schedule():
         )
         games.append(game)
 
-
-    
     return games
 
 

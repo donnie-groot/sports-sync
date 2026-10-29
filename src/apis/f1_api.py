@@ -10,13 +10,9 @@ import requests
 
 
 def get_f1_schedule():
-    try:
-        response = requests.get("https://api.jolpi.ca/ergast/f1/current/races.json")
-        response.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        print(f"FAILED to fetch f1 schedule: {e}")
-        raise
-        
+    response = requests.get("https://api.jolpi.ca/ergast/f1/current/races.json")
+    response.raise_for_status()
+
     races = response.json()["MRData"]["RaceTable"]["Races"]
     return races
 

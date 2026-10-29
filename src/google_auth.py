@@ -45,4 +45,4 @@ def google_auth():
         file.write(creds.to_json())
 
     # returning and building a connection to google calendar v3 api
-    return build("calendar", "v3", credentials=creds)
+    return build("calendar", "v3", credentials=creds, cache_discovery=False)
