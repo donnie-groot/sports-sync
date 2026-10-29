@@ -1,6 +1,6 @@
 ###### standard libery imports ######
 import logging
-
+import sys
 ###### 3rd party imports ######
 
 ###### local imports ######
@@ -118,16 +118,21 @@ def main():
     except Exception:
         logger.exception("FAILED GOOGLE AUTH")
         raise
-        
+
+    failed = False
+    
     items = []
     for fetch, build in SOURCES:
         try:
             items.extend(build(fetch()))
         except Exception:
             logger.exception(f"FAILED {fetch.__name__}")
+            failed = True
 
     smart_sync(service, items)
 
+    if failed == True:
+        sys.exit(1)
 
 # calling main
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 name: sync sports
 on:
     schedule:
-        - cron: "0 8 * * *"
+        - cron: "37 8 * * *"
     workflow_dispatch:
 jobs:
     run:
@@ -21,3 +21,6 @@ jobs:
                   echo "cfb_api_key=${{ secrets.CFB_API_KEY }}" > .env
                   echo "cbb_api_key=${{ secrets.CFB_API_KEY }}" >> .env
             - run: python src/main.py
+            - name: notify on failure
+              if: failure()
+              run: curl -d "sports-sync failed" ntfy.sh/${{ secrets.NTFY_TOPIC }}
