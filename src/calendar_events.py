@@ -125,23 +125,39 @@ def smart_sync(service, items_to_sync):
         key = event.get("extendedProperties", {}).get("private", {}).get("sync_key")
         if key:
             events_by_keys[key] = event
+
+    counter = {"added": 0, "updated": 0, "failed": 0}
     
     for item in items_to_sync:
         matching_event = events_by_keys.get(item["sync_key"])
+        action = None
+        worked = False
 
         if matching_event is None:
             if not item["is_tbd"]:
-                create_timed_event(service, item["summary"], item["start"], item["end"], item["sync_key"])
+                action = "added"
+                worked = create_timed_event(service, item["summary"], item["start"], item["end"], item["sync_key"])
 
             else:
-                create_all_day_event(service, item["summary"], item["game"], item["sync_key"])
+                action = "added"
+                worked = create_all_day_event(service, item["summary"], item["game"], item["sync_key"])
 
         else:
             if "date" in matching_event["start"] and not item["is_tbd"]:
-                delete_event(service, matching_event["id"])
-                create_timed_event(service, item["summary"], item["start"], item["end"], item["sync_key"])
+                action = "updated"
+                deleted = delete_event(service, matching_event["id"])
+                created = create_timed_event(service, item["summary"], item["start"], item["end"], item["sync_key"])
+                worked = deleted and created
 
             elif "dateTime" in matching_event["start"] and not item["is_tbd"]:
                 existing_time = matching_event["start"]["dateTime"][:19]
                 if existing_time != item["start"]:
-                    update_event(service, matching_event["id"], item["summary"], item["start"], item["end"], item["sync_key"])
+                    action = "updated"
+                    worked = update_event(service, matching_event["id"], item["summary"], item["start"], item["end"], item["sync_key"])
+
+        if action is not None:
+            if worked:
+                counter[action] += 1
+            else:
+                counter["failed"] += 1
+    return counter
