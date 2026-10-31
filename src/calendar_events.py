@@ -47,10 +47,11 @@ def create_timed_event(service, summary, start_time_formatted, end_time_formatte
     try:
         service.events().insert(calendarId="primary", body=event).execute()
         logger.info(f"Added {event['summary']}:")
+        return True
 
     except Exception:
         logger.exception(f"FAILED to add {event['summary']}")
-
+        return False
 
 
 # makes events for our tbds
@@ -77,18 +78,22 @@ def create_all_day_event(service, summary, game: Game, sync_key):
     try:
         service.events().insert(calendarId="primary", body=event).execute()
         logger.info(f"Added {event['summary']}:")
+        return True
+
     except Exception:
         logger.exception(f"FAILED to add {event['summary']}")
-
+        return False
 
 # deletes events
 def delete_event(service, event_id):
     try:
         service.events().delete(calendarId="primary", eventId=event_id).execute()
         logger.info(f"deleted event {event_id}")
+        return True
+
     except Exception:
         logger.exception(f"FAILED to delete event {event_id}")
-
+        return False
 
 #update events
 def update_event(service, event_id, summary, start_time_formatted, end_time_formatted, sync_key):
@@ -106,9 +111,11 @@ def update_event(service, event_id, summary, start_time_formatted, end_time_form
             body=event,
         ).execute()
         logger.info(f"Updated {summary}")
+        return True
+        
     except Exception:
         logger.exception(f"FAILED to update {summary}")
-
+        return False
 
 def smart_sync(service, items_to_sync):
     all_events = get_existing_events(service)
