@@ -129,7 +129,10 @@ def main():
             logger.exception(f"FAILED {fetch.__name__}")
             failed = True
 
-    smart_sync(service, items)
+    counts = smart_sync(service, items)
+    logger.info(f"sync done: {counts['added']} added, {counts['updated']} updated, {counts['failed']} failed")
+    if counts["failed"] > 0:
+        failed = True
 
     if failed:
         sys.exit(1)
