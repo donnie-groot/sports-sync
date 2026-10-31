@@ -32,8 +32,8 @@
 - [x] SOURCES list in main so a new sport is one line
 - [x] per sport error handling so if one api has an issue it doesn't kill the run
 - [x] f1: use `current` season instead of hardcoded 2026
-- [ ] swap print statements for logging (in progress)
-- [ ] let api errors bubble up to main instead of double reporting
+- [x] swap print statements for logging
+- [x] let api errors bubble up to main instead of double reporting
 - [ ] fail the run (red in Actions) if any sport or calendar call failed
 - [ ] run summary line (synced / added / updated / failed)
 - [ ] make a config.toml for team, timezone (per sport calendars later)
@@ -50,7 +50,7 @@
 
 - [x] matching by summary string → sync keys
 - [x] fragile .%f datetime parsing → fromisoformat
-- [ ] move summary, sync_key, duration onto Game
+- [x] move summary, sync_key, duration onto Game
 - [ ] neutral site support ("vs" instead of "at")
 - [ ] sync: update TBD games whose date moved (flex games)
 - [ ] sync: push summary changes to existing events

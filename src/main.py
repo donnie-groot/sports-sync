@@ -131,7 +131,7 @@ def main():
 
     smart_sync(service, items)
 
-    if failed == True:
+    if failed:
         sys.exit(1)
 
 # calling main
